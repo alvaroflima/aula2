@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html lang="pt-br">
+	<head>
+		<meta charset="utf-8">
+		<title>calcula numero de Azulejos</title>
+	</head>
+	<body>
+		<p>Digite a altura e largura da Parede em cm</p>
+		
+		<input type="text" name="altura" id="alturaId" placeholder="altura da parede em cm"/>
+		<br>
+		<input type="text" name="largura" id="larguraId" placeholder="Largura da parede em cm"/>
+		<br>
+		<input type="button" onclick="calcula_azulejos()"  value="--- calcular ---" id="btn-calcula"/>
+		<hr>
+		<input type="radio" name="Azulejos" id="30x30" value="1"> 30 x 30
+		<input type="radio" name="Azulejos" id="25x30" value="2"> 25 x 30
+		<input type="radio" name="Azulejos" id="30x40" value="3"> 30 x 40
+		<input type="radio" name="Azulejos" id="40x40" value="4"> 40 x 40
+		
+		<p id="Num_azulejos"></p>
+		
+		
+		<script type="text/javascript">
+
+		function calcula_azulejos (){
+			var total_azulejos;	
+			if(document.getElementById('30x30').checked==true){
+				// calcula com  azulejo 30 x 30
+				total_azulejos=	calcula_total(30,30);
+			}else if(document.getElementById('25x30').checked==true){			
+					// calcula com  azulejo 25 x 30
+					total_azulejos=	calcula_total(25,30);
+			}else if(document.getElementById('30x40').checked==true){
+						// calcula com  azulejo 30 x 40
+						total_azulejos=	calcula_total(30,40);
+			}else if(document.getElementById('40x40').checked==true){
+						// calcula com  azulejo 40 x 40
+						total_azulejos=	calcula_total(40,40);
+			}else {
+				alert(" por favor escolha um azulejo");
+			}
+			function calcula_total(alt_azulejo,larg_azulejo){
+			
+				var tot_azu_alt=	Number(document.getElementById('alturaId').value)/ alt_azulejo;
+				var tot_azu_alt_int = parseInt (tot_azu_alt);
+				var tot_azu_alt_fra = tot_azu_alt - tot_azu_alt_int;
+				
+				if(tot_azu_alt>0){
+					if(tot_azu_alt_fra<=0.5)  	tot_azu_alt=tot_azu_alt+0.5;
+					else 						tot_azu_alt=tot_azu_alt+1;
+				}
+				var tot_azu_larg=	Number(document.getElementById('larguraId').value)/ larg_azulejo;
+				var tot_azu_larg_int = parseInt (tot_azu_larg);
+				var tot_azu_larg_fra = tot_azu_larg - tot_azu_larg_int;
+				if(tot_azu_larg>0){
+					if(tot_azu_larg_fra<=0.5)  	tot_azu_larg=tot_azu_larg+0.5;
+					else 						tot_azu_larg=tot_azu_larg+1;
+				}
+				var tot_azu =tot_azu_alt * tot_azu_larg;
+				
+				return (tot_azu);
+			}
+
+			document.getElementById("Num_azulejos").innerHTML=" Numero de Azulejos : "+total_azulejos.toFixed(0);							
+		}
+
+		</script>
+	</body>
+</html>
+
+
+
+
+  
